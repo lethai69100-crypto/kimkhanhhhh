@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Women Dayyy 20/10 – KK</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff0f4;--card:#ffffff;--ink:#4a2433;--soft:#9b6479;--rose:#e8527a;--rose2:#f7a6bd;--line:#f6d3de;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a1620;--card:#3a1f2c;--ink:#ffe6ee;--soft:#d9a2b6;--rose:#ff7da0;--rose2:#a84a68;--line:#5a3042}}
+:root[data-theme="dark"]{--bg:#2a1620;--card:#3a1f2c;--ink:#ffe6ee;--soft:#d9a2b6;--rose:#ff7da0;--rose2:#a84a68;--line:#5a3042}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Quicksand',system-ui,sans-serif;line-height:1.6;text-align:center;min-height:100vh}
+h1,h2{font-family:'Playfair Display',Georgia,serif;margin:0}
+.screen{display:none;max-width:560px;margin:0 auto;padding:40px 20px 80px}
+.screen.on{display:block}
+.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.petals span{position:absolute;top:-30px;font-size:20px;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.petals{display:none}}
+.screen{position:relative;z-index:1}
+.big{font-size:2.2rem;color:var(--rose);margin:24px 0 8px}
+.sub{color:var(--soft);margin:0 0 28px}
+.btn{display:block;width:100%;margin:12px 0;padding:16px;border:2px solid var(--rose2);border-radius:999px;background:var(--card);color:var(--ink);font:600 1.05rem 'Quicksand',sans-serif;cursor:pointer}
+.btn:hover,.btn:focus-visible{background:var(--rose);color:#fff;outline:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:16px 0;text-align:left}
+.card h3{margin:0 0 6px;color:var(--rose);font-size:1.05rem}
+.card p{margin:0}
+.orn{color:var(--rose2);letter-spacing:.5em;margin:24px 0}
+.heart{font-size:3.4rem;background:none;border:0;cursor:pointer;transition:transform .15s}
+.heart:active{transform:scale(1.35)}
+.small{background:none;border:0;color:var(--soft);font:inherit;cursor:pointer;text-decoration:underline;margin:6px 8px}
+#music{position:fixed;right:14px;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:5;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 .85rem 'Quicksand',sans-serif;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="petals" id="petals"></div>
+<button id="music" type="button">🎵 Bật nhạc</button>
+
+<section class="screen on" id="s1">
+  <div style="font-size:3rem">🌸🌹🌷</div>
+  <h1 class="big">Xin chào! 💐</h1>
+  <p class="sub">Bạn là ai?</p>
+  <button class="btn" data-who="girls">🌸 Kim Khánh</button>
+  <button class="btn" data-who="teacher">🌹 Kim Cake</button>
+</section>
+
+<section class="screen" id="s2">
+  <p class="sub" style="margin-bottom:0">Happy Vietnamese Women’s Day</p>
+  <h1 class="big">Women Dayyy 💐</h1>
+  <h2 style="font-size:2.6rem">20 · 10</h2>
+  <p class="sub">Ngày Phụ nữ Việt Nam</p>
+
+  <h2 style="font-size:1.5rem">💌 Lời chúc 20/10</h2>
+  <p class="sub">Từ tớ, với thật nhiều yêu thương</p>
+  <div class="orn">✿ ❀ ✿</div>
+
+  <div class="card" id="wishT"><h3>🌹 Gửi Kim Cake</h3>
+    <p>Chúc Cake luôn khỏe mạnh, hạnh phúc, tràn đầy niềm vui và luôn tỏa ánh nắng của riêng Cake.</p></div>
+  <div class="card" id="wishG"><h3>🌸 Gửi Kim Khánh</h3>
+    <p>Chúc Khánh luôn rạng rỡ như hoa, tự tin và thật nhiều niềm vui. Mong Khánh sẽ thành công trên con đường Khánh đã chọn!</p></div>
+
+  <h2 style="font-size:1.6rem">Chúc 20/10 thật rực rỡ! ♥</h2>
+  <button class="heart" id="heart" type="button" aria-label="Thả tim">💖</button>
+  <p class="sub">Bấm để thả tim nè · <b id="count">0</b> trái tim</p>
+  <button class="small" id="back" type="button">↩ Quay lại chọn lại</button>
+</section>
+
+<script>
+(function(){
+  var s1=document.getElementById('s1'),s2=document.getElementById('s2');
+  var wT=document.getElementById('wishT'),wG=document.getElementById('wishG');
+  function show(el){s1.classList.remove('on');s2.classList.remove('on');el.classList.add('on');window.scrollTo(0,0)}
+  document.querySelectorAll('[data-who]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var w=b.getAttribute('data-who');
+      wT.style.display=(w==='girls')?'none':'block';
+      wG.style.display=(w==='teacher')?'none':'block';
+      show(s2);
+    });
+  });
+  document.getElementById('back').addEventListener('click',function(){show(s1)});
+
+  var n=0,c=document.getElementById('count');
+  document.getElementById('heart').addEventListener('click',function(e){
+    n++;c.textContent=n;
+    var h=document.createElement('span');h.textContent='💗';
+    h.style.cssText='position:fixed;pointer-events:none;z-index:9;font-size:22px;transition:all .9s ease-out;left:'+e.clientX+'px;top:'+e.clientY+'px';
+    document.body.appendChild(h);
+    requestAnimationFrame(function(){h.style.transform='translateY(-90px)';h.style.opacity='0'});
+    setTimeout(function(){h.remove()},950);
+  });
+
+  var p=document.getElementById('petals'),em=['🌸','🌷','🌹'];
+  for(var i=0;i<12;i++){
+    var sp=document.createElement('span');sp.textContent=em[i%3];
+    sp.style.left=(Math.random()*100)+'%';
+    sp.style.animationDuration=(8+Math.random()*8)+'s';
+    sp.style.animationDelay=(-Math.random()*12)+'s';
+    p.appendChild(sp);
+  }
+
+  var ctx=null,timer=null,on=false,m=document.getElementById('music');
+  var tune=[523,587,659,784,659,587,523,392,440,523,659,587,523];
+  function play(){
+    var i=0;
+    timer=setInterval(function(){
+      var o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='sine';o.frequency.value=tune[i%tune.length];i++;
+      g.gain.setValueAtTime(.12,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.45);
+      o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+.5);
+    },450);
+  }
+  m.addEventListener('click',function(){
+    try{
+      if(!ctx){ctx=new (window.AudioContext||window.webkitAudioContext)()}
+      on=!on;
+      if(on){ctx.resume();play();m.textContent='🔇 Tắt nhạc'}
+      else{clearInterval(timer);m.textContent='🎵 Bật nhạc'}
+    }catch(err){}
+  });
+})();
+</script>
+</body>
+</html>
